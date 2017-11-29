@@ -4,7 +4,7 @@
 Plugin Name: Gutenberg Atomizer
 Plugin URI: http://tylerchance.net
 Description: Returns an atomized version of Gutenberg articles in the WP-REST API. 
-Version: 0.0.1
+Version: 0.0.2
 Author: Tyler Chance
 Author URI: http://tylerchance.net
 License: GPLv2 or later
