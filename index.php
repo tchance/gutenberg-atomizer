@@ -54,7 +54,7 @@ function turn_into_array($html) {
                 $this_block = array(
                     'type' => $block['blockName'],
                     'attributes' => $block['attrs'],
-                    'content' => $block['rawContent']
+                    'content' => $block['innerHTML']
                 );
                 array_push($gutenberg_response, $this_block);
             }
