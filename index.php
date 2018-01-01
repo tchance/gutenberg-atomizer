@@ -44,17 +44,19 @@ function get_post_src( $object, $field_name, $request ) {
         }
     WP-API returns PHP Array as an array of JSON Objects
 */
+
+
 function turn_into_array($html) {
     if (class_exists('Gutenberg_PEG_Parser')) {
         $gutenberg_response = array();
         $parser = new Gutenberg_PEG_Parser();
-        $parsed_blocks = $parser->parse($html);
+        $parsed_blocks = $parser->parse( $html );
         foreach ($parsed_blocks as $block) {
             if ($block['blockName']) {
                 $this_block = array(
                     'type' => $block['blockName'],
                     'attributes' => $block['attrs'],
-                    'content' => $block['innerHTML']
+                    'content' => make_readable( $block['innerHTML'])
                 );
                 array_push($gutenberg_response, $this_block);
             }
@@ -63,3 +65,15 @@ function turn_into_array($html) {
     }
 }
 
+
+/*
+    Outputs standard HTML, by:
+    --> taking out opening escapes with wpautop
+    --> taking out intenal line breaks with nl2br()
+    --> taking out escaped "s 
+*/
+function make_readable($block_content) {
+    $content = wpautop( $block_content, false );
+    $content = preg_replace('/(\\n)/', '' , $content);
+    return $content;
+}
