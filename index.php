@@ -56,7 +56,7 @@ function turn_into_array($html) {
                 $this_block = array(
                     'type' => $block['blockName'],
                     'attributes' => $block['attrs'],
-                    'content' => make_readable( $block['innerHTML'])
+                    'content' => make_readable_html( $block['innerHTML'])
                 );
                 array_push($gutenberg_response, $this_block);
             }
@@ -67,11 +67,11 @@ function turn_into_array($html) {
 
 
 /*
-    Outputs standard HTML, by:
+    Outputs more readable HTML, by:
     --> taking out opening escapes with wpautop
     --> taking out intenal line breaks with preg_replace()
 */
-function make_readable($block_content) {
+function make_readable_html($block_content) {
     $content = wpautop( $block_content, false );
     $content = preg_replace('/(\\n)/', '' , $content);
     return $content;
