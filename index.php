@@ -58,7 +58,8 @@ function get_post_src( $object, $field_name, $request ) {
 
 
 function turn_into_array($html) {
-    if (class_exists('Gutenberg_PEG_Parser')) {
+    if (!class_exists('Gutenberg_PEG_Parser')) {
+        require_once dirname( dirname( __FILE__ ) ) . '/gutenberg/lib/parser.php';
         $gutenberg_response = array();
         $parser = new Gutenberg_PEG_Parser();
         $parsed_blocks = $parser->parse( $html );
