@@ -13,7 +13,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 //  Fire add_post_source on rest_api_init
 add_action( 'rest_api_init', 'add_post_source' );
-add_action( 'rest_api_init', 'add_story_source' );
+add_action( 'rest_api_init', 'add_page_source' );
 //  Add gutenberg_atoms field into the rest api response for a post
 //  call to get_post_src
 function add_post_source() {
@@ -27,8 +27,8 @@ function add_post_source() {
         );
 }
 
-function add_story_source () {
-    register_rest_field( 'story',
+function add_page_source () {
+    register_rest_field( 'page',
     'blocks', 
     array(
         'get_callback'    => 'get_post_src',
